@@ -11,4 +11,5 @@
 #
 # By default this script does nothing.
 screen -d -m sh /home/pi/pi3b/ip.sh
+screen -d -m python /home/pi/pi3b/shutdownPi.py
 exit 0
