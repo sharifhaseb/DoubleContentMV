@@ -17,7 +17,7 @@ for counter in range(0,36):
     # Camera rotation is set accordingly to new location.
     cam.rotation_euler = (pi/2+radians(alpha),pi/2,0)
     # Determines where to save image.
-    bpy.data.scenes['Scene'].render.filepath = '/home/kaan/image%s.jpg' % counter
+    bpy.data.scenes['Scene'].render.filepath = '/blender/image%s.jpg' % counter				#windows dizini icin /xxx seklinde olmali
     # Renders image.
     bpy.ops.render.render(write_still=True)
     # Increment counter.
