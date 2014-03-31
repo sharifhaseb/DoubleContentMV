@@ -4,7 +4,7 @@ import socket
 from email.mime.text import MIMEText
 import datetime
 # Change to your own account information
-to = 'kunguz@gmail.com'
+to = 'solcer@ku.edu.tr'
 gmail_user = 'opticalmicrosystemslaboratory@gmail.com'
 gmail_password = 'a1b2c3d4e5f6g7'
 smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
