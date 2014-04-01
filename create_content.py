@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+#/CONTENT/ klasörü altındaki image0,1,2... dosyalarını slitlere bölüp uygun offsete göre ekranlara yazar.
 
 __author__ = ('Kaan Akşit')
 
