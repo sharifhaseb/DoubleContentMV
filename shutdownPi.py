@@ -17,7 +17,7 @@ def shutdown(buton):
 		
 buton = 11										#Buton'un baglanacagi pin numarasi
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(buton,GPIO.IN,pull_up_down = GPIO.PUD_UP)				#buton'u input olarak tanýmlýyorum. Pull up direncini aktif ediyorum.
-GPIO.add_event_detect(buton, GPIO.FALLING, callback=shutdown, bouncetime=200)	#dusen kenarda 200ms bekleyip shutdown fonksiyonuna gidiyor
+GPIO.setup(buton,GPIO.IN,pull_up_down = GPIO.PUD_UP)				#buton'u input olarak tanï¿½mlï¿½yorum. Pull up direncini aktif ediyorum.
+GPIO.add_event_detect(buton, GPIO.FALLING, callback=shutdown, bouncetime=1000)	#dusen kenarda 200ms bekleyip shutdown fonksiyonuna gidiyor
 while True:
 	time.sleep(.2)								#sonsuz dongu
