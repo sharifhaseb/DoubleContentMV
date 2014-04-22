@@ -63,39 +63,23 @@ def main(debug=False):
             return True     
     # Each screen is being update with the necessary content.
     # Change the tdelay (secs) to adjust the time in between each screen update.
-    tdelay   = 2
-    # Get initialization time. 
-    tinit    = time.time()
-    # Get start time stamp.
-    tstart   = time.time()
-    # Simple counter
-    SetNo    = 0
-    # Number of set of images to be displayed.
-    NoOfSet  = 10
-    # Get the current time stamp.
-    tcurrent = time.time()
-    # Loop to display moving images, it displays moving images for a minute and then stops.
-    while tcurrent-tinit < 60:
-        # Get the current time stamp.
-        tcurrent = time.time()
-        # Check if time periodicity is reached.
-        if tcurrent-tstart > 2:
-            # Kill the current fbi applications operational.
-            os.system('pkill fbi') 
-            # Update the screens loop.
-            for i in UpdateList:
-                # Update the screen.
-                UpdateScreen(ttys[i],'./Content/v%d/samplescreen%d.png' % (SetNo,i))     
-                # Prints a status report if debug mode is on.
-                if debug == True:
-                    print 'Updating %s on %s' % (screens[i],ttys[i])
-                # Delay between each screen update.
-                time.sleep(0.1)
-                # Set a new start time.
-                tstart = time.time()
-            # Increment to set new set of images.
-            SetNo   += 1 
-            SetNo    = SetNo % NoOfSet
+    tdelay   = 0.1
+    # Command variable initiated.
+    command  = ''
+    # Update the screens loop.
+    for i in UpdateList:
+        # Update command.
+        for j in xrange(0,10):
+            command += './Content/v%d/samplescreen%d.png ' % (j,i)
+        # Update the screen.
+        UpdateScreen(ttys[i],'./Content/v0/samplescreen%d.png' % i)     
+        # Prints a status report if debug mode is on.
+        if debug == True:
+            print 'Updating %s on %s' % (screens[i],ttys[i])
+        # Delay between each screen update.
+        time.sleep(tdelay)
+        # Clear command variable.
+        command = ''
     return True
 
 # Display test pattern at each framebuffer device.
@@ -104,8 +88,6 @@ def test(ttys,screens,wait="no"):
     for i in xrange(0,len(screens)):
         UpdateScreen(ttys[i])
         print 'Updating %s on %s' % (screens[i],ttys[i])
-        if wait == "yes":
-            time.sleep(1)
     return True
 
 if __name__ == '__main__':
