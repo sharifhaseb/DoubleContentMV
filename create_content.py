@@ -30,11 +30,7 @@ def ReadCSV(filename,BlockNumber):
 
 # If ShowImage is set to yes, the content is created using sample input under Content folder.
 # BlockNumber determines the position of the six pico projector.
-def main(ShowImage='yes'):
-    # Setting ShowImage through shell.
-    if len(sys.argv) > 1:
-        if sys.argv[1] == 'no':
-            ShowImage = 'no' 
+def ConvertContent(ShowImage='yes',SetNo=0):
     # Number of views.
     NumberOfViews = 6
     # Recognize Raspberry PI.
@@ -118,7 +114,7 @@ def main(ShowImage='yes'):
     MultiViewImages = []
     hup             = 36
     for no in xrange(0,hup):
-        MultiViewImages.append('./Blender/image%s.png' % no)
+        MultiViewImages.append('./Blender/v%d/image%s.png' % (SetNo,no))
     # Reverse order the images for correct registration on the screen.
     MultiViewImages = reversed(MultiViewImages)
     # Create Image Slices to be displayed by each pico projector.
@@ -162,16 +158,16 @@ def main(ShowImage='yes'):
                         NewSurface.blit(ChosenImage[ImageCounter[a]], slit)                
                         # Increasing the image counter to take right slice in the next step.
                         ImageCounter[a] += 1
-        pygame.image.save(NewSurface, './Content/samplescreen%d.png' % j)
-    os.system("mv ./Content/samplescreen1.png ./Content/samplescreen12.png")
-    os.system("mv ./Content/samplescreen5.png ./Content/samplescreen1.png")
-    os.system("mv ./Content/samplescreen2.png ./Content/samplescreen13.png")
-    os.system("mv ./Content/samplescreen3.png ./Content/samplescreen14.png")
-    os.system("mv ./Content/samplescreen4.png ./Content/samplescreen15.png")
-    os.system("mv ./Content/samplescreen12.png ./Content/samplescreen2.png")
-    os.system("mv ./Content/samplescreen13.png ./Content/samplescreen3.png")
-    os.system("mv ./Content/samplescreen14.png ./Content/samplescreen4.png")
-    os.system("mv ./Content/samplescreen15.png ./Content/samplescreen5.png")
+        pygame.image.save(NewSurface, './Content/v%d/samplescreen%d.png' % (SetNo,j))
+    os.system("mv ./Content/v%d/samplescreen1.png ./Content/v%d/samplescreen12.png" % (SetNo,SetNo))
+    os.system("mv ./Content/v%d/samplescreen5.png ./Content/v%d/samplescreen1.png"  % (SetNo,SetNo))
+    os.system("mv ./Content/v%d/samplescreen2.png ./Content/v%d/samplescreen13.png" % (SetNo,SetNo))
+    os.system("mv ./Content/v%d/samplescreen3.png ./Content/v%d/samplescreen14.png" % (SetNo,SetNo))
+    os.system("mv ./Content/v%d/samplescreen4.png ./Content/v%d/samplescreen15.png" % (SetNo,SetNo))
+    os.system("mv ./Content/v%d/samplescreen12.png ./Content/v%d/samplescreen2.png" % (SetNo,SetNo))
+    os.system("mv ./Content/v%d/samplescreen13.png ./Content/v%d/samplescreen3.png" % (SetNo,SetNo))
+    os.system("mv ./Content/v%d/samplescreen14.png ./Content/v%d/samplescreen4.png" % (SetNo,SetNo))
+    os.system("mv ./Content/v%d/samplescreen15.png ./Content/v%d/samplescreen5.png" % (SetNo,SetNo))
     return True
 
 # Function to load image and slice it
@@ -200,5 +196,17 @@ def LoadImage(path,SlitHeight=20,reverse=0,width=234,height=848,rotate='yes'):
         Cropped = Cropped[::-1]
     return Cropped
 
+def MovingImages():
+    ShowImage = 'yes'
+    # Setting ShowImage through shell.
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'no':
+            ShowImage = 'no'
+    # Processing all of the image sets.
+    for SetNo in xrange(0,10):
+        ConvertContent(ShowImage,SetNo)
+        print 'Image set no: %d is processed.' % SetNo
+    return True
+
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(MovingImages())

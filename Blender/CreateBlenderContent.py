@@ -2,7 +2,8 @@
 # Vector comes with mathutils.
 import mathutils
 # Set Camera object to a variable.
-cam = bpy.data.objects['Camera']
+cam   = bpy.data.objects['Camera']
+SetNo = 0 
 
 # Loop to create images from different perspectives.
 for counter in range(0,36):
@@ -17,7 +18,8 @@ for counter in range(0,36):
     # Camera rotation is set accordingly to new location.
     cam.rotation_euler = (pi/2+radians(alpha),pi/2,0)
     # Determines where to save image.
-    bpy.data.scenes['Scene'].render.filepath = '/blender/image%s.jpg' % counter				#windows dizini icin /xxx seklinde olmali
+    bpy.data.scenes['Scene'].render.filepath = '/blender/v%d/image%s.jpg' % (SetNo,counter) 
+    #windows dizini icin /xxx seklinde olmali
     # Renders image.
     bpy.ops.render.render(write_still=True)
     # Increment counter.
