@@ -84,11 +84,8 @@ def main(debug=False):
             os.system('pkill fbi') 
             # Update the screens loop.
             for i in UpdateList:
-                # Create a new variable that corresponds to image set filenames.
-                ImageNo = i + len(UpdateList) * SetNo
-                print SetNo, ImageNo
                 # Update the screen.
-                UpdateScreen(ttys[i],'./Content/samplescreen%d.png' % ImageNo)     
+                UpdateScreen(ttys[i],'./Content/v%d/samplescreen%d.png' % (SetNo,i))     
                 # Prints a status report if debug mode is on.
                 if debug == True:
                     print 'Updating %s on %s' % (screens[i],ttys[i])
