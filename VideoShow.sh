@@ -5,12 +5,14 @@ rm /home/pi/log*
 NAME=`cat /etc/hostname`
 echo "$NAME"
 python StartNow.py
-if [ "$NAME"=="PI3B01" ]; then
+if [ "$NAME" = "PI3B01" ]; then
         mplayer -udp-master -udp-ip 172.23.163.255 -framedrop -vo fbdev:/dev/fb1 -nosound /home/pi/pi3b/Content/tty1.avi >> /home/pi/log1.txt &
 	echo "Master!"
 else
-        if [ "$NAME"!="PI3B03" ]; then
+        if [ "$NAME" != "PI3B03" ]; then
             mplayer -udp-slave -framedrop -vo fbdev:/dev/fb1 -nosound /home/pi/pi3b/Content/tty1.avi >> /home/pi/log2.txt &
+        else
+            echo 'PI3B01 skips fb1'
 	fi
         echo "Slave!"
 fi
