@@ -1,6 +1,7 @@
 
 sudo pkill fbi
 sudo pkill mplayer
+sudo rm /home/pi/log*
 sudo python StartNow.py
 sudo mplayer -vo fbdev:/dev/fb1 -fs -nosound /home/pi/pi3b/Content/tty1.avi >> /home/pi/log1.txt &
 sudo mplayer -vo fbdev:/dev/fb2 -fs -nosound /home/pi/pi3b/Content/tty2.avi >> /home/pi/log2.txt &
