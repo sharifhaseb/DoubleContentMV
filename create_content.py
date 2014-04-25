@@ -202,8 +202,14 @@ def MovingImages():
     if len(sys.argv) > 1:
         if sys.argv[1] == 'no':
             ShowImage = 'no'
+    # Maximum set number.
+    SetMax = 10
     # Processing all of the image sets.
-    for SetNo in xrange(0,10):
+    for SetNo in xrange(0,SetMax):
+        # Create the corresponding folders.
+        newpath = r'./Content/v%d/' % SetNo
+        if not os.path.exists(newpath): os.makedirs(newpath)
+        # Convert the image set into usable format.
         ConvertContent(ShowImage,SetNo)
         print 'Image set no: %d is processed.' % SetNo
     return True
