@@ -10,8 +10,8 @@ case $doit in
   n) ETHER="no";;
 esac
 echo "$ETHER"
-#python StartNow.py
-
+sleep 2
+python StartNow.py
 if [ "$ETHER" = "yes" ]; then
    echo "Ethernet mode on!"
    if [ "$NAME" = "PI3B01" ]; then
