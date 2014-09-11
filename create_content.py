@@ -203,7 +203,7 @@ def MovingImages():
         if sys.argv[1] == 'no':
             ShowImage = 'no'
     # Maximum set number.
-    SetMax = 10
+    SetMax = 1
     # Processing all of the image sets.
     for SetNo in xrange(0,SetMax):
         # Create the corresponding folders.
