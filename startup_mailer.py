@@ -4,7 +4,8 @@ import socket
 from email.mime.text import MIMEText
 import datetime
 # Change to your own account information
-to = ['solcer@ku.edu.tr','amir.niaki2009@gmail.com']
+to  = 'solcer@ku.edu.tr'
+to2 = 'amir.niaki2009@gmail.com'
 gmail_user = 'opticalmicrosystemslaboratory@gmail.com'
 gmail_password = 'a1b2c3d4e5f6g7'
 smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
@@ -25,5 +26,6 @@ msg['Subject'] = 'IP For %s on %s' % (socket.gethostname(),today.strftime('%b %d
 msg['From'] = gmail_user
 msg['To'] = to
 smtpserver.sendmail(gmail_user, [to], msg.as_string())
+smtpserver.sendmail(gmail_user, [to2], msg.as_string())
 smtpserver.quit()
 
